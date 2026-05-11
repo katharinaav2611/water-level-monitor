@@ -1,69 +1,48 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.so.*
-
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Build directories
-build/
-Build/
-build-*/
-
-# CMake generated files
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-install_manifest.txt
-compile_commands.json
-
-# Temporary files
-*.tmp
-*.log
-*.bak
+# IDE and Editor
+.vscode/
+.idea/
 *.swp
+*.swo
+*~
+.DS_Store
 
-# vcpkg
-vcpkg_installed/
+# Build and Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.*.local
 
-# debug information files
-*.dwo
+# ESP32 and Arduino
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+*.o
+*.a
+*.so
+*.elf
+*.hex
 
-# test output & cache
-Testing/
-.cache/
+# Secrets and Credentials
+secrets.h
+config.local.h
+*.pem
+*.key
+*.crt
+
+# Azure
+.azure/
+*.tfstate
+*.tfstate.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# OS
+Thumbs.db
+.env.json
