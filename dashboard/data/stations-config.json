@@ -1,0 +1,32 @@
+[
+  {
+    "stationId": "STATION-001",
+    "stationName": "Engineering Building",
+    "location": "Building A, Floor 2",
+    "coordinates": { "lat": -6.8912, "lng": 107.6103 }
+  },
+  {
+    "stationId": "STATION-002",
+    "stationName": "Library Plaza",
+    "location": "Central Library Entrance",
+    "coordinates": { "lat": -6.8906, "lng": 107.6111 }
+  },
+  {
+    "stationId": "STATION-003",
+    "stationName": "Science Hall",
+    "location": "Science Block C, Ground Floor",
+    "coordinates": { "lat": -6.8899, "lng": 107.6098 }
+  },
+  {
+    "stationId": "STATION-004",
+    "stationName": "Student Center",
+    "location": "Student Center Lobby",
+    "coordinates": { "lat": -6.8902, "lng": 107.6121 }
+  },
+  {
+    "stationId": "STATION-005",
+    "stationName": "Sports Complex",
+    "location": "Gymnasium Main Gate",
+    "coordinates": { "lat": -6.8921, "lng": 107.6117 }
+  }
+]

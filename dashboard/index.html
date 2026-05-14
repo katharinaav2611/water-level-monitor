@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Water Station Monitor</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <div>
+        <h1>Campus Water Station Monitor</h1>
+        <p id="refresh-status">Initializing dashboard…</p>
+      </div>
+    </div>
+    <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+      <a href="#stations">Stations</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="overview" class="overview-cards" aria-label="Dashboard overview">
+      <article class="overview-card">
+        <h2>Operational Stations</h2>
+        <p id="metric-operational" class="metric-value">--</p>
+      </article>
+      <article class="overview-card">
+        <h2>Average Water Level</h2>
+        <p id="metric-average-level" class="metric-value">--</p>
+      </article>
+      <article class="overview-card">
+        <h2>Total Refills</h2>
+        <p id="metric-total-refills" class="metric-value">--</p>
+      </article>
+      <article class="overview-card">
+        <h2>Program Effectiveness</h2>
+        <p id="metric-effectiveness" class="metric-value">--</p>
+      </article>
+    </section>
+
+    <section id="stations" class="panel">
+      <div class="panel-header">
+        <h2>Water Station Grid</h2>
+        <span id="last-refresh-label">Last refresh: --</span>
+      </div>
+      <div id="station-grid" class="station-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="analytics" class="panel">
+      <div class="panel-header">
+        <h2>Data Analytics & Reporting</h2>
+      </div>
+      <div class="analytics-grid">
+        <article class="chart-card">
+          <h3>Water Consumption Patterns (Daily)</h3>
+          <canvas id="consumption-chart"></canvas>
+        </article>
+        <article class="chart-card">
+          <h3>Water Level History</h3>
+          <canvas id="history-chart"></canvas>
+        </article>
+        <article class="chart-card">
+          <h3>Most Used Stations</h3>
+          <canvas id="usage-chart"></canvas>
+          <ol id="usage-ranking" class="usage-ranking"></ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="settings" class="panel">
+      <div class="panel-header">
+        <h2>Settings</h2>
+      </div>
+      <div class="settings-grid">
+        <label class="setting-item" for="auto-refresh-toggle">
+          <span>Auto refresh</span>
+          <input type="checkbox" id="auto-refresh-toggle" checked />
+        </label>
+        <label class="setting-item" for="refresh-interval-select">
+          <span>Refresh interval</span>
+          <select id="refresh-interval-select">
+            <option value="10">10 seconds</option>
+            <option value="15" selected>15 seconds</option>
+            <option value="20">20 seconds</option>
+            <option value="30">30 seconds</option>
+          </select>
+        </label>
+      </div>
+      <p id="connection-status" class="connection-status">Checking connection…</p>
+    </section>
+  </main>
+
+  <script>
+    window.DASHBOARD_CONFIG = {
+      iotDataEndpoint: '',
+      endpointApiKey: ''
+    };
+  </script>
+  <script src="js/azure-iot-client.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
