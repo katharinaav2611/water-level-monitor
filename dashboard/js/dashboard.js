@@ -8,7 +8,7 @@
     autoRefresh: true,
     refreshIntervalSeconds: 15,
     timerId: null,
-    charts: null,
+    dashboardCharts: null,
     azureClient: null
   };
 
@@ -37,7 +37,7 @@
       apiKey: window.DASHBOARD_CONFIG?.endpointApiKey
     });
 
-    state.charts = new window.DashboardCharts();
+    state.dashboardCharts = new window.DashboardCharts();
 
     try {
       const response = await fetch('data/stations-config.json');
@@ -122,7 +122,7 @@
     renderStations(state.stationsData);
     renderOverview(state.stationsData);
     renderRankings(state.stationsData);
-    state.charts.update(state.stationsData, state.stationHistory);
+    state.dashboardCharts.update(state.stationsData, state.stationHistory);
 
     const now = new Date();
     const timestamp = now.toLocaleString();
@@ -203,8 +203,16 @@
   }
 
   function renderOverview(stations) {
+    if (!stations.length) {
+      elements.metricOperational.textContent = '0/0';
+      elements.metricAverageLevel.textContent = '0%';
+      elements.metricTotalRefills.textContent = '0';
+      elements.metricEffectiveness.textContent = '0% healthy';
+      return;
+    }
+
     const operationalCount = stations.filter((item) => item.status !== 'maintenance').length;
-    const averageLevel = stations.reduce((sum, item) => sum + item.waterLevel, 0) / Math.max(stations.length, 1);
+    const averageLevel = stations.reduce((sum, item) => sum + item.waterLevel, 0) / stations.length;
     const totalRefills = stations.reduce((sum, item) => sum + item.totalRefills, 0);
     const successRate = stations.length ? Math.round((operationalCount / stations.length) * 100) : 0;
 

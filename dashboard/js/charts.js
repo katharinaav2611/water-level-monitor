@@ -73,13 +73,27 @@
     }
 
     updateConsumption(stations) {
+      if (!stations.length) {
+        this.consumptionChart.data.labels = [];
+        this.consumptionChart.data.datasets[0].data = [];
+        this.consumptionChart.update();
+        return;
+      }
+
       this.consumptionChart.data.labels = stations.map((station) => station.stationName);
       this.consumptionChart.data.datasets[0].data = stations.map((station) => station.dailyConsumption);
       this.consumptionChart.update();
     }
 
     updateHistory(stations, stationHistory) {
-      const firstSeries = stationHistory.get(stations[0]?.stationId) || [];
+      if (!stations.length) {
+        this.historyChart.data.labels = [];
+        this.historyChart.data.datasets = [];
+        this.historyChart.update();
+        return;
+      }
+
+      const firstSeries = stationHistory.get(stations[0].stationId) || [];
       this.historyChart.data.labels = firstSeries.map((point) => point.label);
       this.historyChart.data.datasets = stations.slice(0, 4).map((station, index) => {
         const palette = ['#0064d8', '#0f9d58', '#f4b400', '#d93025'];
@@ -95,6 +109,13 @@
     }
 
     updateUsage(stations) {
+      if (!stations.length) {
+        this.usageChart.data.labels = [];
+        this.usageChart.data.datasets[0].data = [];
+        this.usageChart.update();
+        return;
+      }
+
       const ranked = [...stations].sort((a, b) => b.totalRefills - a.totalRefills).slice(0, 6);
       this.usageChart.data.labels = ranked.map((station) => station.stationName);
       this.usageChart.data.datasets[0].data = ranked.map((station) => station.totalRefills);
